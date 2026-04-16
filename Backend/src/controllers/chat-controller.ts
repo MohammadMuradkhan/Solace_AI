@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from "express";
 import User from "../Models/User.js";
 import OpenAI from 'openai';
-import pdf from 'pdf-parse';
 import fs from 'fs';
+ import pdfParse from 'pdf-parse';
 
 export const generateChatCompletion = async (
   req: Request,
@@ -20,7 +20,9 @@ export const generateChatCompletion = async (
 
     // Read the PDF file
     const pdfData = fs.readFileSync(pdfPath);
-    const pdfText = await pdf(pdfData);
+
+    const pdfParse = (await import("pdf-parse")).default; // ✅ FIX
+    const pdfText = await pdfParse(pdfData);
 
     // grab chats of user
     const chats = user.chats.map(({ role, content }) => ({
