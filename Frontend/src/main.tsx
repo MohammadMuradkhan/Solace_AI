@@ -61,7 +61,6 @@ import { AuthProvider } from './context/AuthContext.tsx';
 import { Toaster } from 'react-hot-toast';
 import axios from "axios";
 
-// ✅ Fixed: use relative URL so Vite proxy handles it (no CORS)
 axios.defaults.baseURL = "/api/v1";
 axios.defaults.withCredentials = true;
 
