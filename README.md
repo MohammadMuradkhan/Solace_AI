@@ -11,7 +11,7 @@ Solace AI is a mental health chatbot designed to provide empathetic conversation
 ## Technologies Used
 - Frontend: React, Axios
 - Backend: Node.js, Express, MongoDB, Mongoose, JWT
-- Chatbot: OpenAI GPT model
+- Model: llama-3.1-8b-instant
 
 ## Home Page
 ![Screenshot 2024-06-05 064608](https://github.com/Aadhya-Sharma/Solace_AI/assets/121510222/4f0e7d64-4d31-4872-b4ad-28167a34064b)
