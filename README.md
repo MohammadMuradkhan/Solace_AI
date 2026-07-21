@@ -4,7 +4,7 @@ Solace AI is a mental health chatbot designed to provide empathetic conversation
 ## Features
 - User authentication (login and signup) with JWT tokens
 - Persistent user sessions
-- Empathetic chat responses generated using OpenAI's GPT model
+- Empathetic chat responses generated using Llama-3.1-8B-Instant model model
 - Chat history saved for each user
 - Secure and private interactions
 
