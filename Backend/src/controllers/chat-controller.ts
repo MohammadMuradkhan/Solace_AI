@@ -318,7 +318,8 @@ If the answer is not in the context, answer normally.`,
     });
 
     const response = await groq.chat.completions.create({
-      model: "llama-3.1-8b-instant",
+      // model: "llama-3.1-8b-instant",
+      model: "openai/gpt-oss-20b",
       messages: chats as any,
     });
 
