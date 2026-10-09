@@ -22,11 +22,19 @@ export const verifyToken = async (
     return res.status(401).json({ message: "Token Not Received" });
   }
   return new Promise<void>((resolve, reject) => {
-    return jwt.verify(token, process.env.JWT_SECRET, (err, success) => {
+    return jwt.verify(token, process.env.JWT_SECRET as string, 
+      // (err, success) =>
+      (err: jwt.VerifyErrors | null, success: jwt.JwtPayload | string | undefined) =>
+        {
+      // if (err) {
+      //   reject(err.message);
+      //   return res.status(401).json({ message: "Token Expired" });
+      // }
       if (err) {
-        reject(err.message);
-        return res.status(401).json({ message: "Token Expired" });
-      } else {
+        resolve();
+        return res.status(401).json({ message: "Token Not Valid" });
+      }
+       else {
         resolve();
         res.locals.jwtData = success;
         return next();
