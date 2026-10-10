@@ -39,8 +39,8 @@ export const userSignup = async (
 
     res.cookie(COOKIE_NAME, token, {
       httpOnly: true,
-      sameSite: "lax",
-      secure: false,
+      sameSite: "none",
+      secure: true,
       path: "/", // ensures cookie is available everywhere
     });
 
