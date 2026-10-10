@@ -41,8 +41,8 @@ export const verifyToken = (
   res: Response,
   next: NextFunction
 ) => {
-  console.log("Cookie names:", Object.keys(req.cookies || {}));
-  console.log("Expected cookie name:", COOKIE_NAME);
+  // console.log("Cookie names:", Object.keys(req.cookies || {}));
+  // console.log("Expected cookie name:", COOKIE_NAME);
 
   const token = req.cookies?.[COOKIE_NAME];
 
