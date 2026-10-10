@@ -72,9 +72,9 @@ export const userLogin = async (
 
     const isPasswordCorrect = await compare(password, user.password);
 
-    console.log("Entered password:", password);
-    console.log("Stored hash:", user.password);
-    console.log("Match:", isPasswordCorrect);
+    // console.log("Entered password:", password);
+    // console.log("Stored hash:", user.password);
+    // console.log("Match:", isPasswordCorrect);
 
     if (!isPasswordCorrect) {
       console.log("Password mismatch");

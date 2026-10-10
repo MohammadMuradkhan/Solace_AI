@@ -1,3 +1,37 @@
+// import { Request, Response, NextFunction } from "express";
+// import jwt from "jsonwebtoken";
+// import { COOKIE_NAME } from "../utils/constants.js";
+
+// export const verifyToken = (
+//   req: Request,
+//   res: Response,
+//   next: NextFunction
+// ) => {
+//   const token = req.cookies[COOKIE_NAME];
+
+//   console.log("Cookies:", req.cookies); 
+
+//   if (!token) {
+//     return res.status(401).send("No token found");
+//   }
+
+//   try {
+//     const data = jwt.verify(token, process.env.JWT_SECRET!);
+
+//     res.locals.jwtData = data;
+
+//     return next();
+//   } catch (error) {
+//     return res.status(401).send("Invalid or expired token");
+//   }
+// };
+
+
+
+
+
+
+
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 import { COOKIE_NAME } from "../utils/constants.js";
@@ -7,9 +41,10 @@ export const verifyToken = (
   res: Response,
   next: NextFunction
 ) => {
-  const token = req.cookies[COOKIE_NAME];
+  console.log("Cookie names:", Object.keys(req.cookies || {}));
+  console.log("Expected cookie name:", COOKIE_NAME);
 
-  console.log("Cookies:", req.cookies); 
+  const token = req.cookies?.[COOKIE_NAME];
 
   if (!token) {
     return res.status(401).send("No token found");
@@ -17,11 +52,13 @@ export const verifyToken = (
 
   try {
     const data = jwt.verify(token, process.env.JWT_SECRET!);
-
     res.locals.jwtData = data;
-
     return next();
   } catch (error) {
+    console.error(
+      "JWT verification failed:",
+      error instanceof Error ? error.message : "Unknown error"
+    );
     return res.status(401).send("Invalid or expired token");
   }
 };
