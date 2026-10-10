@@ -87,7 +87,7 @@ export const userLogin = async (
 
     res.cookie(COOKIE_NAME, token, {
       httpOnly: true,
-      sameSite: "lax",
+      sameSite: "none",
       secure: false,
       path: "/", // ensures cookie is available everywhere,written  again for reminding
     });
