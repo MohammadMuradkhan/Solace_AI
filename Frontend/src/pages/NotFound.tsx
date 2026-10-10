@@ -1,4 +1,4 @@
-import React from 'react'
+// import React from 'react' -> not used anywhere, i.e., why giving error.
 
 const NotFound = () => {
   return (
