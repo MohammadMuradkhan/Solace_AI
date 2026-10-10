@@ -57,7 +57,19 @@ export const verifyToken = (
     return res.status(401).json({ message: "Token Not Received" });
   }
 
-  jwt.verify(token, process.env.JWT_SECRET as string, (err, success) => {
+  // jwt.verify(token, process.env.JWT_SECRET as string, (err, success) => {
+  //   if (err) {
+  //     console.error("JWT verification failed:", err.message);
+  //     return res.status(401).json({ message: "Token Not Valid" });
+  //   }
+
+  //   res.locals.jwtData = success;
+  //   return next();
+  // });
+  jwt.verify(
+  token,
+  process.env.JWT_SECRET as string,
+  (err: jwt.VerifyErrors | null, success: jwt.JwtPayload | string | undefined) => {
     if (err) {
       console.error("JWT verification failed:", err.message);
       return res.status(401).json({ message: "Token Not Valid" });
