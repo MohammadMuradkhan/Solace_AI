@@ -33,7 +33,13 @@ export const userSignup = async (
     const user = new User({ name, email, password: hashedPassword });
     await user.save();
 
-    res.clearCookie(COOKIE_NAME);
+    // res.clearCookie(COOKIE_NAME);
+    res.clearCookie(COOKIE_NAME, {
+      httpOnly: true,
+      sameSite: "none",
+      secure: true,
+      path: "/",
+    });
 
     const token = createToken(user._id.toString(), user.email, "7d");
 
@@ -81,14 +87,20 @@ export const userLogin = async (
       return res.status(403).send("Incorrect Password");
     }
 
-    res.clearCookie(COOKIE_NAME);
+    // res.clearCookie(COOKIE_NAME);
+    res.clearCookie(COOKIE_NAME, {
+      httpOnly: true,
+      sameSite: "none",
+      secure: true,
+      path: "/",
+    });
 
     const token = createToken(user._id.toString(), user.email, "7d");
 
     res.cookie(COOKIE_NAME, token, {
       httpOnly: true,
       sameSite: "none",
-      secure: false,
+      secure: true,
       path: "/", // ensures cookie is available everywhere,written  again for reminding
     });
 
@@ -146,7 +158,13 @@ export const UserLogout = async (
       return res.status(401).send("Permission didn't match");
     }
 
-    res.clearCookie(COOKIE_NAME);
+    // res.clearCookie(COOKIE_NAME);
+    res.clearCookie(COOKIE_NAME, {
+      httpOnly: true,
+      sameSite: "none",
+      secure: true,
+      path: "/",
+    });
 
     return res.status(200).json({
       message: "OK",
